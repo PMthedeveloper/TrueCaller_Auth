@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "546283866862",
+    "firebase_url": "https://truecallerauth-d94d1.firebaseio.com",
+    "project_id": "truecallerauth-d94d1",
+    "storage_bucket": "truecallerauth-d94d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546283866862:android:1c562e1021e5536c8e81ff",
+        "android_client_info": {
+          "package_name": "com.example.truecaller_Auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546283866862-bssfme0rt05qb4k7hlqiaus4vv52fh2u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.truecaller_Auth",
+            "certificate_hash": "8877f5ddb0456bc0a7feebbca0e0247354623bc1"
+          }
+        },
+        {
+          "client_id": "546283866862-p9g54lehrtq19p4l8ngr8sc0qi724mr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1XB5yStYstTXjpGyBWZu_xHlKJJxdVP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546283866862-p9g54lehrtq19p4l8ngr8sc0qi724mr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
