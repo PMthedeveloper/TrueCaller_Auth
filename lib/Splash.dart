@@ -30,7 +30,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 2,
-      navigateAfterSeconds: user != null ? HomePage(user: user) : PhoneLogin(),
+      navigateAfterSeconds: user != null ? HomePage(user: user) : TrueLogin(),
       title: new Text(
         'True Auth',
         textScaleFactor: 2,

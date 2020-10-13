@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:truecaller_Auth/otp_screen.dart';
 
-class BottomBar extends StatefulWidget {
+class PhoneLogin extends StatefulWidget {
   @override
-  _BottomBarState createState() => _BottomBarState();
+  _PhoneLoginState createState() => _PhoneLoginState();
 }
 
-class _BottomBarState extends State<BottomBar> {
+class _PhoneLoginState extends State<PhoneLogin> {
   final TextEditingController _phoneNumberController = TextEditingController();
 
   bool isValid = false;

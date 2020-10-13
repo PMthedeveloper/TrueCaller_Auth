@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:truecaller_Auth/Bottombar.dart';
+import 'package:truecaller_Auth/Phone_Firebase_login.dart';
 import 'package:truecaller_Auth/HomePage.dart';
 import 'package:truecaller_sdk/truecaller_sdk.dart';
 
-class PhoneLogin extends StatefulWidget {
+class TrueLogin extends StatefulWidget {
   @override
-  _PhoneLoginState createState() => _PhoneLoginState();
+  _TrueLoginState createState() => _TrueLoginState();
 }
 
-class _PhoneLoginState extends State<PhoneLogin> {
+class _TrueLoginState extends State<TrueLogin> {
   Stream<TruecallerSdkCallback> _stream;
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
       } else {
         print("Not usable");
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => PhoneLogin()));
+            .push(MaterialPageRoute(builder: (context) => TrueLogin()));
       }
     });
   }
@@ -97,14 +97,14 @@ class _PhoneLoginState extends State<PhoneLogin> {
                       ),
                     );
                   case TruecallerSdkCallbackResult.failure:
-                    return BottomBar();
+                    return PhoneLogin();
                   case TruecallerSdkCallbackResult.verification:
                     return Text("Verification Required!");
                   default:
                     return Text("Invalid result");
                 }
               } else
-                return BottomBar();
+                return PhoneLogin();
             },
           ),
         ));

@@ -28,7 +28,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: user != null ? HomePage(user: user) : PhoneLogin(),
+      body: user != null ? HomePage(user: user) : TrueLogin(),
     );
   }
 }
