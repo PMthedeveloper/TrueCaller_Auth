@@ -103,7 +103,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0.0)),
                     child: Text(
-                      "ENTER OTP",
+                      "VERIFY",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,

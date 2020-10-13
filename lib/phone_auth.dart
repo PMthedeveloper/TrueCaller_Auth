@@ -10,7 +10,6 @@ class PhoneLogin extends StatefulWidget {
 
 class _PhoneLoginState extends State<PhoneLogin> {
   Stream<TruecallerSdkCallback> _stream;
-
   @override
   void initState() {
     trueCaller(context);
@@ -31,6 +30,8 @@ class _PhoneLoginState extends State<PhoneLogin> {
         TruecallerSdk.getProfile;
       } else {
         print("Not usable");
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => PhoneLogin()));
       }
     });
   }
@@ -40,6 +41,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Truecaller Auth"),
+          automaticallyImplyLeading: false,
         ),
         body: Material(
           child: StreamBuilder<TruecallerSdkCallback>(
@@ -49,49 +51,49 @@ class _PhoneLoginState extends State<PhoneLogin> {
                 switch (snapshot.data.result) {
                   case TruecallerSdkCallbackResult.success:
                     return Container(
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                              " ${snapshot.data.profile.firstName} ${snapshot.data.profile.lastName} \n ${snapshot.data.profile.email} \n ${snapshot.data.profile.phoneNumber}",
-                              style: TextStyle(
-                                  fontSize: 20, letterSpacing: 2, height: 5)),
-                          // OutlineButton(
-                          //     borderSide: BorderSide(
-                          //         color: Colors.blue,
-                          //         style: BorderStyle.solid,
-                          //         width: 3),
-                          //     child: Text(
-                          //       'Log out',
-                          //       style: TextStyle(color: Colors.blue),
-                          //     ),
-                          //     onPressed: () {
-                          //       FirebaseAuth.instance
-                          //           .signOut()
-                          //           .then((action) {
-                          //         Navigator.of(context)
-                          //             .pushReplacementNamed('/homepage');
-                          //       }).catchError((e) {
-                          //         print(e);
-                          //       });
-                          //     }),
-                          OutlineButton(
-                            borderSide: BorderSide(
-                                color: Colors.blue,
-                                style: BorderStyle.solid,
-                                width: 3),
-                            child: Text(
-                              'Confirm',
-                              style: TextStyle(color: Colors.blue),
+                      padding: EdgeInsets.all(8),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Card(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    " ${snapshot.data.profile.firstName} ${snapshot.data.profile.lastName} \n ${snapshot.data.profile.email} \n ${snapshot.data.profile.phoneNumber}",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        letterSpacing: 2,
+                                        height: 3),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: OutlineButton(
+                                      borderSide: BorderSide(
+                                          color: Colors.blue,
+                                          style: BorderStyle.solid,
+                                          width: 3),
+                                      child: Text(
+                                        'Confirm',
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => HomePage()),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()),
-                              );
-                            },
-                          )
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   case TruecallerSdkCallbackResult.failure:

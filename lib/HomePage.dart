@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Image.network('https://i.imgur.com/st9GYVW.png'),
           Center(
             child: Text(
               "Welcome",
@@ -32,8 +33,12 @@ class HomePage extends StatelessWidget {
             child: Text("Logout"),
             onPressed: () {
               _firebaseAuth.signOut();
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => App()));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => App(),
+                ),
+              );
             },
           ),
         ],
