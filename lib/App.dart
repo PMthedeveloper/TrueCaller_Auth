@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:truecaller_Auth/HomePage.dart';
-import 'package:truecaller_Auth/phone_auth.dart';
+import 'package:truecaller_Auth/truecaller_auth.dart';
 
 class App extends StatefulWidget {
   @override

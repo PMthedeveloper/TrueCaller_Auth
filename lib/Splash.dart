@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:truecaller_Auth/HomePage.dart';
-import 'package:truecaller_Auth/phone_auth.dart';
+import 'package:truecaller_Auth/truecaller_auth.dart';
 
 class Splash extends StatefulWidget {
   @override
