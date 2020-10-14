@@ -41,9 +41,10 @@ class _OTPScreenState extends State<OTPScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0.0,
+        title: Text("OTP Verify"),
         bottom: PreferredSize(
           child: Container(
-            padding: EdgeInsets.only(left: 16.0, bottom: 20, top: 40),
+            padding: EdgeInsets.only(left: 16.0, bottom: 10, top: 40),
             color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,62 +74,59 @@ class _OTPScreenState extends State<OTPScreen> {
           preferredSize: Size.fromHeight(100),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: PinInputTextField(
-                pinLength: 6,
-                decoration: _pinDecoration,
-                controller: _pinEditingController,
-                autoFocus: true,
-                textInputAction: TextInputAction.done,
-                onSubmit: (pin) {
-                  if (pin.length == 6) {
-                    _onFormSubmitted();
-                  } else {
-                    showToast("Invalid OTP", Colors.red);
-                  }
-                },
-              ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: PinInputTextField(
+              pinLength: 6,
+              decoration: _pinDecoration,
+              controller: _pinEditingController,
+              autoFocus: true,
+              textInputAction: TextInputAction.done,
+              onSubmit: (pin) {
+                if (pin.length == 6) {
+                  _onFormSubmitted();
+                } else {
+                  showToast("Invalid OTP", Colors.red);
+                }
+              },
             ),
-            Container(
-              padding: EdgeInsets.all(16),
-              child: Center(
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: RaisedButton(
-                    color: Theme.of(context).primaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0.0)),
-                    child: Text(
-                      "VERIFY",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: () {
-                      if (_pinEditingController.text.length == 6) {
-                        _onFormSubmitted();
-                      } else {
-                        showToast("Invalid OTP", Colors.red);
-                      }
-                    },
-                    padding: EdgeInsets.all(16.0),
+          ),
+          Container(
+            padding: EdgeInsets.all(16),
+            child: Center(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: RaisedButton(
+                  color: Theme.of(context).primaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Text(
+                    "VERIFY",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold),
                   ),
+                  onPressed: () {
+                    if (_pinEditingController.text.length == 6) {
+                      _onFormSubmitted();
+                    } else {
+                      showToast("Invalid OTP", Colors.red);
+                    }
+                  },
+                  padding: EdgeInsets.all(16.0),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   void showToast(message, Color color) {
-    print(message);
     Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:truecaller_Auth/Phone_Firebase_login.dart';
 import 'package:truecaller_Auth/HomePage.dart';
@@ -9,29 +10,38 @@ class TrueLogin extends StatefulWidget {
 }
 
 class _TrueLoginState extends State<TrueLogin> {
+  final _firestore = Firestore.instance;
   Stream<TruecallerSdkCallback> _stream;
+
+  String email;
+  String mobileno;
+  String firstname;
+  String lastname;
+
   @override
   void initState() {
-    trueCaller(context);
     super.initState();
     _stream = TruecallerSdk.streamCallbackData;
+    trueCaller(context);
   }
 
   trueCaller(context) {
     TruecallerSdk.initializeSDK(
-        sdkOptions: TruecallerSdkScope.SDK_CONSENT_TITLE_GET_STARTED,
-        consentMode: TruecallerSdkScope.CONSENT_MODE_POPUP,
-        loginTextPrefix: TruecallerSdkScope.LOGIN_TEXT_PREFIX_TO_PROCEED,
-        buttonShapeOptions: TruecallerSdkScope.BUTTON_SHAPE_ROUNDED,
-        footerType: TruecallerSdkScope.FOOTER_TYPE_ANOTHER_METHOD);
+      sdkOptions: TruecallerSdkScope.SDK_CONSENT_TITLE_GET_STARTED,
+      consentMode: TruecallerSdkScope.CONSENT_MODE_POPUP,
+      loginTextPrefix: TruecallerSdkScope.LOGIN_TEXT_PREFIX_TO_PROCEED,
+      buttonShapeOptions: TruecallerSdkScope.BUTTON_SHAPE_ROUNDED,
+      footerType: TruecallerSdkScope.FOOTER_TYPE_ANOTHER_METHOD,
+    );
     TruecallerSdk.isUsable.then((isUsable) async {
       if (isUsable) {
         TruecallerSdk.setDarkTheme;
         TruecallerSdk.getProfile;
       } else {
-        print("Not usable");
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => TrueLogin()));
+        // print("Not usable");
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => PhoneLogin()),
+        );
       }
     });
   }
@@ -84,8 +94,20 @@ class _TrueLoginState extends State<TrueLogin> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => HomePage()),
+                                            builder: (context) => HomePage(),
+                                          ),
                                         );
+                                        // _firestore
+                                        //     .collection("true_users")
+                                        //     .add({
+                                        //   'email': snapshot.data.profile.email,
+                                        //   'mobileno':
+                                        //       snapshot.data.profile.phoneNumber,
+                                        //   'firstname':
+                                        //       snapshot.data.profile.firstName,
+                                        //   'lastname':
+                                        //       snapshot.data.profile.lastName
+                                        // });
                                       },
                                     ),
                                   )
@@ -96,10 +118,13 @@ class _TrueLoginState extends State<TrueLogin> {
                         ),
                       ),
                     );
+                    break;
                   case TruecallerSdkCallbackResult.failure:
                     return PhoneLogin();
+                    break;
                   case TruecallerSdkCallbackResult.verification:
                     return Text("Verification Required!");
+                    break;
                   default:
                     return Text("Invalid result");
                 }

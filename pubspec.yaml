@@ -30,6 +30,7 @@ dependencies:
   firebase_core: ^0.4.1+3
   flutter_truecaller: ^0.3.1
   fluttertoast: ^3.1.3
+  
   splashscreen: ^1.2.0
   truecaller_sdk: ^0.0.2
 
