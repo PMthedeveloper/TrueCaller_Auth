@@ -90,24 +90,29 @@ class _TrueLoginState extends State<TrueLogin> {
                                         'Confirm',
                                         style: TextStyle(color: Colors.blue),
                                       ),
-                                      onPressed: () {
+                                      onPressed: () async {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => HomePage(),
                                           ),
                                         );
-                                        // _firestore
-                                        //     .collection("true_users")
-                                        //     .add({
-                                        //   'email': snapshot.data.profile.email,
-                                        //   'mobileno':
-                                        //       snapshot.data.profile.phoneNumber,
-                                        //   'firstname':
-                                        //       snapshot.data.profile.firstName,
-                                        //   'lastname':
-                                        //       snapshot.data.profile.lastName
-                                        // });
+                                        await _firestore
+                                            .collection("true_users")
+                                            .add({
+                                              'email':
+                                                  snapshot.data.profile.email,
+                                              'mobileno': snapshot
+                                                  .data.profile.phoneNumber,
+                                              'firstname': snapshot
+                                                  .data.profile.firstName,
+                                              'lastname':
+                                                  snapshot.data.profile.lastName
+                                            })
+                                            .then(
+                                                (value) => print("User Added!"))
+                                            .catchError((error) => print(
+                                                "Failed to add user: $error"));
                                       },
                                     ),
                                   )
