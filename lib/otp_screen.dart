@@ -23,8 +23,7 @@ class _OTPScreenState extends State<OTPScreen> {
   TextEditingController _pinEditingController = TextEditingController();
 
   /// Decorate the outside of the Pin.
-  PinDecoration _pinDecoration =
-      UnderlineDecoration(enteredColor: Colors.black);
+  PinDecoration _pinDecoration = BoxLooseDecoration(enteredColor: Colors.black);
 
   bool isCodeSent = false;
   String _verificationId;
